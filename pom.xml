@@ -8,6 +8,7 @@
 	<name>ccjeesite Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- 添加Server环境 Begin -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -20,6 +21,7 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- 添加Server环境 End -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
