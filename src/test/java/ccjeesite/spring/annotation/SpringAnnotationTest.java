@@ -9,5 +9,8 @@ public class SpringAnnotationTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:/spring-context*.xml");
 		Model bean = (Model)ctx.getBean("model");
 		bean.test();
+		
+		ControllerModel controller = (ControllerModel) ctx.getBean("controllerModel");
+		controller.test();
 	}
 }
