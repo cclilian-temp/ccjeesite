@@ -15,16 +15,18 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<aop:config>
+	<aop:aspectj-autoproxy/>
+	
+	<!-- <aop:config>
         <aop:pointcut expression="execution(void ccjeesite.aop.One.before())" id="p1" />
 
         <aop:aspect ref = "two">
         
 	        <aop:before method="test" pointcut-ref="p1" />
 	        
-	        <!-- <aop:after-returning method="commitTransaction" pointcut-ref="p1"/> -->
+	        <aop:after-returning method="commitTransaction" pointcut-ref="p1"/>
         
         </aop:aspect>
-    </aop:config>
+    </aop:config> -->
 	
 </beans>
