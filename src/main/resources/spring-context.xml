@@ -2,19 +2,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 		
 	<!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:jeesite.properties" />
 	
 	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
-	<context:component-scan base-package="com.thinkgem.jeesite"><!-- base-package 如果多个，用“,”分隔 -->
+	<context:component-scan base-package="ccjeesite"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<bean id="propertyModel" class="ccjeesite.spring.properties.PropertyModel">
-		<property name="name" value="${name}"></property>
-	</bean>
+	<aop:config>
+        <aop:pointcut expression="execution(void ccjeesite.aop.One.before())" id="p1" />
+
+        <aop:aspect ref = "two">
+        
+	        <aop:before method="test" pointcut-ref="p1" />
+	        
+	        <!-- <aop:after-returning method="commitTransaction" pointcut-ref="p1"/> -->
+        
+        </aop:aspect>
+    </aop:config>
 	
 </beans>
